@@ -122,9 +122,30 @@ Select the vpc to attach to. In my case "Zakayo" and select the "Attach Internet
 Well done!!! Your VPC can acccess the internet. Hurraayy!!!
 
 ## Step 4 : Creating Route Tables
-Route tables provide the necessary framework for managing and controlling network traffic within a VPC. They are essential for customizing network paths, ensuring connectivity to the internet, facilitating communication between different subnets, and maintaining a secure and efficient network infrastructure.
+
+Route tables provide the necessary framework for managing and controlling network traffic within a VPC. They are essential for customizing network paths, ensuring connectivity to the internet, facilitating communication between different subnets, and maintaining a secure and efficient network infrastructure. To effectively manage network traffic within your Virtual Private Cloud (VPC), it's crucial to create separate route tables for both public and private resources. This segregation allows you to customize routing rules as well as control internet access.
+
+To create dedicated route tables for our network configuration, navigate to the "Route Tables" section on the left. Once selected, you'll observe the presence of default route tables. However, for our specific requirements, we'll proceed to create customized route tables to tailor the routing rules for both public and private resources. Choose the "Create Route Table" button located at the top right of the Route Table section. 
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Default%20RT.png)
 
 
+Enter the desired name for your Route Table  and proceed by selecting the "Create Route Table " button located at the bottom right of the page.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Create%20RT.png)
+
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Successfully%20created%20RT.png)
+
+In my case, I've created two Route Tables named "Zakayo_RT-1" and "Zakayo_RT-2,"  The "Zakayo_RT-1"  is designated to be the public Route Table, while "Zakayo_RT-2" is configured to be the private Route Table.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/My-RTs.png)
+
+To establish the desired network configuration, it's essential to associate route tables with the corresponding subnets. Specifically, the public route table should be linked with the public subnet, while the private route table should be associated with the private subnet. This ensures that routing rules are aligned with the nature of the resources within each subnet, optimizing the network setup for both public and private components.
+
+To create associations between route tables and subnets, select the desired subnet. On the top right corner, next to "Create Route Table," click on "Actions." From the dropdown menu, choose "Edit Subnet Associations." This process enables you to establish the connection between the selected subnet and the intended route table, aligning routing rules with the subnet's purpose, be it for public or private resources.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Associate%20RTs%20with%20subnets.png)
 
 
 
