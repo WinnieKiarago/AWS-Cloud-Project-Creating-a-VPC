@@ -1,2 +1,137 @@
-# AWS-Cloud-Projects
-Cloud computing with AWS
+# AWS-Cloud-Projects  - Cloud computing with AWS
+
+# Setting up a VPC
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC.png)
+
+## **Introduction**
+A Virtual Private Cloud (VPC) is a cloud computing infrastructure that closely resembles a traditional physical datacenter in its functionality. Serving as the networking backbone of the cloud, a VPC seamlessly connects various components and facilitates efficient communication within the cloud environment. This expansive network extends across a designated **region**, providing a scalable and secure framework for hosting and managing resources in the cloud.
+
+## **Step by step guide**
+
+I will guide you through a comprehensive, step-by-step process for setting up a Virtual Private Cloud (VPC) using the management console. Upon launching the console, here's what you can anticipate. Keep in mind that the interface may vary if you have previously engaged with different services.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Management%20console%20home%20page.png)
+
+
+
+
+## Step 1 : Creating the VPC
+
+Navigate to the top search bar and enter "VPC" to initiate the process. This action will lead you to the relevant section within the management console where you can configure and manage your Virtual Private Cloud settings.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Search%20VPC.png)
+
+
+Choose the "VPC" option from the search results to be directed to the VPC dashboard. This dashboard is the central hub for configuring and overseeing your Virtual Private Cloud settings, allowing you to efficiently manage and customize your cloud networking infrastructure.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Create%20vpc%20dashboard.png)
+
+
+Click on the "Create VPC" option located at the top, adjacent to the "Launch EC2 Instances." This action will take you to the setup interface where you can begin configuring your new VPC. The screen will present you with a series of fields and options to define the parameters of your Virtual Private Cloud. 
+
+This is what you should see
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Create%20vpc%20page.png)
+
+
+Opting for the "VPC Only" option indicates your intention to have precise control over the components associated with the VPC. Proceed by filling in the parameters according to the specific requirements of your project. Input the necessary details such as the VPC name, IPv4 CIDR block, and any additional settings that align with your project's networking needs. Ensure that the configurations are in line with your project's specifications for a tailored and optimized Virtual Private Cloud.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/VPC%20name%20and%20CIDR.png)
+
+CIDR, which stands for Classless Inter-Domain Routing, is a method for specifying IP addresses and their associated routing behavior. It allows for more flexible allocation of IP addresses than the traditional class-based addressing.
+
+When setting up a Virtual Private Cloud (VPC) and defining its CIDR block, you need to choose a range of IP addresses that will be used within the network. The CIDR block is specified in the form of a range, such as 10.0.0.0/16, where the "10.0.0.0" represents the network address, and the "/16" indicates the subnet mask.
+
+For example, in 10.0.0.0/16:
+
+    "10.0.0.0" is the network address.
+    "/16" represents the subnet mask, indicating that the first 16 bits are used for the network portion, leaving 32 - 16 = 16 bits for host addresses.
+
+Choosing an appropriate CIDR block depends on the number of hosts you expect to have in your network and the level of granularity you need for subnetting. A larger CIDR block provides more IP addresses but may result in larger broadcast domains, while a smaller CIDR block offers fewer addresses but allows for more efficient use of address space.
+
+Ensure that the CIDR block you choose doesn't overlap with any existing networks, either within your cloud environment or externally. Additionally, consider future scalability requirements when selecting the CIDR block for your VPC.
+
+After filling in all the necessary parameters for your VPC, proceed to the bottom of the page and select the "Create VPC" option. This action will initiate the creation process, and your Virtual Private Cloud will be provisioned with the specified configurations. 
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Create%20VPC.png)
+
+Congratulations! You've successfully created a VPC. 
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Successfully%20created%20VPC.png)
+
+It's crucial to be aware that alongside the VPC you've created, there may be default VPCs present in your cloud environment. These default VPCs are automatically generated by the cloud provider and can serve as a quick-start option for users who want a pre-configured networking environment.
+
+While my custom VPC, named "Zakayo," reflects my specific configurations and preferences, the default VPCs often come with predefined settings for ease of use. Be mindful of both your custom VPC and any default VPCs present, ensuring that your resources are appropriately organized and configured within the desired network structure.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/My%20VPCs.png)
+
+
+It's important to note that while the VPC infrastructure is in place, its full potential comes to life when you start populating it with resources. Whether it's deploying instances, setting up databases, or configuring other services, the real power of your VPC unfolds as you add and manage resources within this cloud networking environment.
+
+## Step 2 : Creating subnets
+
+Subnets are a way of dividing a larger network, into smaller and more manageable segments. This segmentation provides several benefits, including improved network organization, enhanced security, and more efficient resource management. Subnets are designed to span across availability zones within a chosen region. This approach enhances reliability and fault tolerance by strategically distributing network resources.
+
+To create a subnet, go to the VPC dashboard on the left side of the management console, and select "Subnets." This will lead you to the Subnets section, where you can create and manage subnets within your Virtual Private Cloud (VPC).
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/No%20Subnets.png)
+
+While default subnets are often automatically generated, creating your own subnets based on your specific needs is advisable. This customization allows you to fine-tune the network structure to meet your requirements, ensuring a more tailored approach to resource allocation, security, and overall management within your cloud environment. Select the "Create Subnet" option located at the top right of the Subnets section to initiate the process of customizing and adding a new subnet to your Virtual Private Cloud (VPC).
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Create%20Subnets.png)
+
+Customize the subnet settings by filling in the required details. This involves specifying parameters such as the VPC association, choosing the availability zone, and defining the CIDR block for the subnet. Ensure that the settings align with your project's networking needs and provide the necessary segmentation within your Virtual Private Cloud (VPC). 
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Select%20VPC%20to%20associate%20with%20subnet.png)
+
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/edit%20subnet%20settings.png)
+
+Once all the parameters are configured to your specifications, navigate to the bottom of the page and click on the "Create Subnets" option.
+
+Upon revisiting the Subnets section, you will observe that the newly configured subnets have been successfully added. Congratulations for coming this far!
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Created%20Subnets.png)
+
+In my case, I've created two subnets named "Zakayo_calmDown1" and "Zakayo_calmDown2," both associated with the "Zakayo" VPC. The "Zakayo_calmDown1" subnet is designated to be the public subnet, while "Zakayo_calmDown2" is configured to be the private subnet. These distinctions in subnet types allow for a tailored and secure network architecture within the "Zakayo" Virtual Private Cloud (VPC).
+
+
+## Step 3 : Creating an Internet Gateway
+
+To ensure that our public resources have access to the internet, it's essential to add an Internet Gateway. This component facilitates communication between the resources within your Virtual Private Cloud (VPC) and the broader internet, enabling seamless connectivity for public-facing services and applications.
+
+Navigate to the left side and select "Internet Gateway." While there may be a default Internet Gateway present, for our specific needs, we will create a dedicated one to facilitate communication between our resources within the Virtual Private Cloud (VPC) and the internet. Choose the "Create Internet Gateway" button located at the top right of the Internet Gateways section.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Default%20IG.png)
+
+Enter the desired name for your Internet Gateway and proceed by selecting the "Create Internet Gateway" button located at the bottom right of the page. This action completes the setup, providing you with a dedicated Internet Gateway.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Create%20IG.png)
+
+
+Even with the Internet Gateway created, it's important to note that your Virtual Private Cloud (VPC) cannot access the internet until the Internet Gateway is attached. To establish this connection, you must proceed to attach the newly created Internet Gateway to your VPC.
+
+Choose the recently created Internet Gateway, then at the top right corner, click on "Actions," and from the dropdown menu, select "Attach VPC." In my case, "Zakayo-IG" is my internet gateway.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Attach%20IG%20to%20VPC.png)
+
+Select the vpc to attach to. In my case "Zakayo" and select the "Attach Internet Gateway Option".
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Attach%20IG%20to%20%20VPC2.png)
+
+Well done!!! Your VPC can acccess the internet. Hurraayy!!!
+
+## Step 4 : Creating Route Tables
+Route tables provide the necessary framework for managing and controlling network traffic within a VPC. They are essential for customizing network paths, ensuring connectivity to the internet, facilitating communication between different subnets, and maintaining a secure and efficient network infrastructure.
+
+
+
+
+
+
+
+
+
+
+
+
