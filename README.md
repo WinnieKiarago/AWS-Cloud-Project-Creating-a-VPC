@@ -221,7 +221,7 @@ Once all the details, including inbound rules for SSH and HTTP, are configured, 
 
 ![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Create%20SG.png)
 
-And here is the successfully created security group.
+And here is the successfully created security group: "Zakayo-SG".
 
 ![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/SG%20successfully%20Created.png)
 
