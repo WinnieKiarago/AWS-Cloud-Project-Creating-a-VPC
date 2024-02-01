@@ -121,7 +121,27 @@ Select the vpc to attach to. In my case "Zakayo" and select the "Attach Internet
 
 Well done!!! Your VPC can acccess the internet. Hurraayy!!!
 
-## Step 4 : Creating Route Tables
+## Step 4 : Creating a NAT Gateway
+
+A Network Address Translation (NAT) Gateway serves the purpose of allowing private subnets within a Virtual Private Cloud (VPC) to access thi internet securely.
+
+To create one navigate to the left side and select "NAT Gateways." While there may be default NAT Gateways present, for our specific needs, we will create a dedicated one to facilitate outbound communication from resources within the Virtual Private Cloud (VPC) to the internet. Choose the "Create NAT Gateway" button located at the top right of the NAT Gateways section.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Create%20NAT.png)
+
+Fill in the required details. For my case I have named my NAT gateway "Zakayo-NATgw". 
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/NAT%20Settings.png)
+
+Network Address Translation (NAT) Gateways are typically associated with public IP addresses. The primary purpose of NAT is to enable private network resources to communicate with the public internet. An Elastic IP (EIP) is a static, public IPv4 address in cloud environments. Its primary purposes include providing a consistent public-facing address for instances or resources, ensuring high availability by allowing quick remapping to other instances, and reducing DNS propagation time when changing public IP addresses associated with services. Elastic IPs are particularly useful for internet-facing resources in dynamic cloud environments where instances may be started, stopped, or replaced.
+
+After associating the NAT Gateway with the private route table, the details for the NAT Gateway should reflect the specific configuration you have set. This may include information such as the associated Elastic IP address, the subnet in which the NAT Gateway is located, and any relevant status indicators.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/NAT%20details.png)
+
+You're doing great! Lets take the next step...
+
+## Step 5 : Creating Route Tables
 
 Route tables provide the necessary framework for managing and controlling network traffic within a VPC. They are essential for customizing network paths, ensuring connectivity to the internet, facilitating communication between different subnets, and maintaining a secure and efficient network infrastructure. To effectively manage network traffic within your Virtual Private Cloud (VPC), it's crucial to create separate route tables for both public and private resources. This segregation allows you to customize routing rules as well as control internet access.
 
@@ -147,10 +167,65 @@ To create associations between route tables and subnets, select the desired subn
 
 ![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Associate%20RTs%20with%20subnets.png)
 
+After completing the association process, you will notice the "Explicit Subnet Associations" section, showing the subnets associated with their respective route tables. This section provides a quick reference to confirm that the routing configurations align with the intended purpose of each subnet, whether designated for public or private resources. For my case "Zakayo_RT-1" is my public Route Table and is associated with "Zakayo_calmDown1" subnet which is the public subnet
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Successfull%20RT-subnet%20Association.png)
 
 
+Given that you have public subnets where an Internet Gateway is in use, it's crucial to configure routes in the public route table to enable internet access for resources within those subnets. Typically, you'd add a default route (0.0.0.0/0) pointing to the Internet Gateway in the public route table, ensuring that traffic destined for the internet is properly directed. This setup allows public-facing resources to communicate with external services on the internet.
+
+To add a route in your route table, select the route table, then at the top right corner, next to "Create Route Table," click on "Actions." From the dropdown menu, choose "Edit Routes." This allows you to modify routes and specify how traffic should be directed.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Add%20route%20to%20privateRT%20and%20indicate%20its%20from%20IG.png)
+
+For the public route table "Zakayo_RT-1," I will add a route where the destination is "0.0.0.0/0" and the target is the Internet Gateway "Zakayo_IG". With this route configuration resources within the public subnet can have internet access. 
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Add%20route%20to%20public%20RT%20and%20indicate%20its%20from%20IG.png)
+
+Let's look at "Zakayo_RT-1" Route Table Details
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/RT1%20details.png)
+
+For the private route table "Zakayo_RT-2," I will add a route where the destination is "0.0.0.0/0" and the target is the NAT Gateway "Zakayo_NATgw". This route configuration allows resources within the private subnet to access the internet securely through the NAT Gateway.
 
 
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/select%20NAT%20created%20earlier.png)
+
+
+Let's look at "Zakayo_RT-2" Route Table Details
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/RT2%20details.png)
+
+
+## Step 6 : Creating a Security Group
+
+A Security Group in cloud computing, particularly within AWS (Amazon Web Services), is a fundamental component for controlling inbound and outbound traffic to and from instances (virtual servers). We will look at instances in a later project.
+
+To create a security group, navigate to the "Security Groups" section on the left. Once selected, you'll observe the presence of default security groups. However, for our specific requirements, we'll proceed to create customized security groups to define inbound and outbound traffic rules for both public and private resources. Choose the "Create Security Group" button located at the top right of the Security Groups section.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Default%20Security%20Group.png)
+
+Fill in the basic details
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Create%20Security%20Group.png)
+
+We will define inbound rules, specifying the types of incoming traffic permitted for resources associated with this security group. For this particular case, I will add SSH and HTTP.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Add%20inbound%20rules.png)
+
+The outbound rules, which define the types of outgoing traffic allowed from the resources associated with the security group therefore  they remain unchanged.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Outbound%20remain%20as%20is.png)
+
+Once all the details, including inbound rules for SSH and HTTP, are configured, click on the "Create Security Group" button at the bottom to finalize
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/Create%20SG.png)
+
+And here is the successfully created security group.
+
+![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC%20aws/SG%20successfully%20Created.png)
+
+Excellent! The VPC and its components have been successfully created. 
 
 
 
