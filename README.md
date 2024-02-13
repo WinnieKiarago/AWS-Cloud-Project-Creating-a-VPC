@@ -1,10 +1,10 @@
-# AWS-Cloud-Projects  - Cloud computing with AWS
+# AWS-Cloud-Projects  - Cloud computing with AWS -heading 1
 
 # Setting up a VPC and its Components
 
 ![Alt Text](https://github.com/WinnieKiarago/AWS-Cloud-Projects/blob/main/VPC.png)
 
-## **Introduction**
+## Introduction -sub heading
 A Virtual Private Cloud (VPC) is a cloud computing infrastructure that closely resembles a traditional physical datacenter in its functionality. Serving as the networking backbone of the cloud, a VPC seamlessly connects various components and facilitates efficient communication within the cloud environment. This expansive network extends across a designated **region**, providing a scalable and secure framework for hosting and managing resources in the cloud. Some key components of a Virtual Private Cloud (VPC) include but not limited to subnets, security groups, and route tables.
 
 ## **Step by step guide**
